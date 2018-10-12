@@ -1,17 +1,16 @@
-// create a function that builds the grid
-//
-// function createGrid(i) {
-//   for(let rows = 0; rows < i; rows++) {
-//     for(let columns = 0; columns < i; columns++); {
-//       $('.game-container').append('<div class=grid></div>');
-//     }
-//   }
-//   $('.grid').width(960/i);
-//   $('.grid').height(960/i);
-// }
+const squares = document.querySelectorAll('div');
+let div;
+function flipSquare(event){
+  console.log('I was clicked');
+  const backImage = event.target;
+  const faceImage = backImage.parentElement.children[0];
+  setTimeout(() => {
+    backImage.style.zIndex = -1;
+    faceImage.style.zIndex = 1;
+  }, 600);
+  //console.log(this); the element that fired the event.
+  this.classList.toggle('flip');
 
+}
 
-const memoryArray = [ 'A', 'A', 'B', 'B' , 'C', 'C', 'D', 'D'];
-const memoryValues = [];
-const memorySquareIds = [];
-const squaresFlipped = 0; 
+squares.forEach(square => square.addEventListener('click', flipSquare));

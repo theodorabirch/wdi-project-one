@@ -7,32 +7,56 @@
 body {
   height: 100vh;
   background: blue;
+  display: flex;
 }
 
 .game-container {
   width: 640px;
   height:640px;
   display: flex;
-  border: 2px solid aqua;
   flex-wrap: wrap;
   z-index: 1;
+  margin:  130px auto;
+  perspective: 1000px;
 }
 
 .memory-squares {
   width: 25%;
   height: 33.333%;
-  border: 2px solid pink;
   position: relative;
   z-index: 1;
+  transform: scale(1);
+  transform style: preserve-3d;
+  transition: transform 2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.memory-squares: active {
+  transform: scale(.97);
+  transition: transform .2s;
+}
+
+.flip {
+  transform: rotateY(180deg);
 }
 .front-face
 .back-face {
   position: absolute;
+  background: red;
 
+}
+img {
+  transform: rotateY(180deg);
 }
 img {
   position: absolute;
   z-index: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
+}
+
+.front-face {
+  width: 80%;
+  height: 80%;  
 }
