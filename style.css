@@ -3,6 +3,26 @@ body {
   backgroun: blue;
 }
 
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 300px;
+  margin-right: 300px; 
+}
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+h1 {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: blue;
+}
 .grid {
   max-width: 960px;
   margin: 0 auto;
@@ -15,7 +35,7 @@ body {
 
 .card {
   margin: 5px;
-  background-color: pink;
+  background-color: blue;
   height: 150px;
   width: 150px;
   background-repeat: round;
@@ -31,4 +51,8 @@ body {
   position: absolute;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.match {
+
 }
