@@ -1,52 +1,52 @@
 // the first step is to display the cards each with a different value - therefore going to use an array of objects and store this in the cardsArray variable.
 
 const cardsArray = [{
-  'name': 'crab',
-  'img': 'images/crab.png'
-},
-{
   'name': 'seahorse',
-  'img': 'images/seahorse.png'
+  'img': 'images/seahorse.svg'
 },
 {
-  'name': 'fish',
-  'img': 'images/fish.png'
+  'name': 'octopus',
+  'img': 'images/kraken.svg'
 },
 {
   'name': 'lobster',
-  'img': 'images/lobster.png'
+  'img': 'images/lobster.svg'
 },
 {
-  'name': 'crayfish',
-  'img': 'images/crayfish.png'
+  'name': 'jellyfish',
+  'img': 'images/jellyfish.svg'
 },
 {
   'name': 'whale',
-  'img': 'images/whale.png'
+  'img': 'images/whale.svg'
 },
 {
   'name': 'dolphin',
-  'img': 'images/dolphin.png'
+  'img': 'images/dolphin.svg'
 },
 {
   'name': 'shark',
-  'img': 'images/shark.png'
+  'img': 'images/shark.svg'
 },
 {
-  'name': 'cod',
-  'img': 'images/cod.png'
+  'name': 'crab',
+  'img': 'images/crab.svg'
 },
 {
   'name': 'shell',
-  'img': 'images/shell.png'
+  'img': 'images/shell.svg'
 },
 {
-  'name': 'black and white fish',
-  'img': 'images/Black and white fish.png'
+  'name': 'starfish',
+  'img': 'images/starfish.svg'
 },
 {
   'name': 'prawn',
-  'img': 'images/prawn.png'
+  'img': 'images/prawn.svg'
+},
+{
+  'name': 'seaUrchin',
+  'img': 'images/sea-urchin.svg'
 }
 ];
 

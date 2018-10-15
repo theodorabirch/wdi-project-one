@@ -8,7 +8,7 @@ button {
   justify-content: center;
   align-items: center;
   margin-left: 300px;
-  margin-right: 300px; 
+  margin-right: 300px;
 }
 .button-container {
   display: flex;
@@ -16,7 +16,7 @@ button {
   align-items: center;
 }
 h1 {
-  font-family: sans-serif;
+  font-family: fantasy;
   display: flex;
   justify-content: center;
   align-items: center;
