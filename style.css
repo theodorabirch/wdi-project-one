@@ -1,8 +1,35 @@
 body {
   margin: 20px 0;
-  background: #5a5aa7;
+  background: url('images/underthesea.jpg');
+  background-repeat: no-repeat;
 }
 
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 3%;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 3%;
+  opacity: 0.8;
+
+}
+
+.score span button {
+  background-color: red;
+  font-size: 30px;
+}
+span {
+  color: yellow;
+  font-size: 30px;
+}
 button {
   display: flex;
   justify-content: center;
@@ -48,6 +75,10 @@ h1 {
   align-items: center;
 }
 
+.grid {
+  border-radius: 10px;
+
+}
 
 .front,.back {
   height: 100%;
@@ -55,9 +86,10 @@ h1 {
   position: absolute;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 10px;
 }
 /* Fish animation */
-svg#fish {
+/*svg#fish {
   top: 5em;
 }
 svg.fish {
@@ -125,7 +157,7 @@ svg #fish6 {
 }
 
 /**/
-@-moz-keyframes bounce {
+/*@-moz-keyframes bounce {
   0%, 50%, 100% {
     -moz-transform: translateY(0);
     transform: translateY(0);
@@ -172,5 +204,5 @@ svg #fish6 {
     -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
   }
-}
+}/*
 /* this ends the fish animation /*

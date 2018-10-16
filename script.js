@@ -56,17 +56,23 @@ const cardsArray = [{
 // need to duplicate the array so I can create a match for each card
 const gameGrid = cardsArray.concat(cardsArray);
 //need to randomise the array
-const shuffledArray = gameGrid; //.sort(() => 0.5 - Math.random());
+const shuffledArray = gameGrid.sort(() => 0.5 - Math.random());
 
-const playerOne = { id: 1, name: 'Player 1', score: 0 };
-const playerTwo = { id: 2, name: 'Player 2', score: 0 };
+const playerOne = { id: 1, name: 'Player 1', score: 0, scoreDisplay: document.getElementById('score1') };
+const playerTwo = { id: 2, name: 'Player 2', score: 0, scoreDisplay: document.getElementById('score2') };
+
+console.log('------------------------------>', playerOne);
+console.log('------------------------------>', playerTwo);
+
+// const scoreDisplayPlayerOne = document.getElementById('score1');
+// const scoreDisplayPlayerTwo = document.getElementById('score2');
 
 // define the global variables that are used.
 let firstChoice = '';
 let secondChoice = '';
 let cardsChosenCount = 0;
 let previousChoice = null;
-const delay = 1200;
+// const delay = 1200;
 let currentPlayer = playerOne;
 
 // Now I need to grab the id of the div in html
@@ -98,10 +104,7 @@ shuffledArray.forEach(item => {
   back.classList.add('back');
   // apply the background image of the div to the cardsArray image
   front.style.backgroundImage = `url(${item.img})`;
-  // console.log('this is the image', item.img);
-  // card.style.backgroundImage = `url`
   // append the div to the grid section
-  // console.log(back);
   grid.appendChild(card);
   card.appendChild(front);
   card.appendChild(back);
@@ -133,18 +136,20 @@ const domCard = document.querySelectorAll('.back');
 domCard.forEach(card => card.addEventListener('click', lookForAMatch));
 let firstDomElement;
 
-let scoreValuePlayerOne = 0;
-let scoreValuePlayerTwo = 0;
-const scoreDisplayPlayerOne = document.getElementById('score1');
-const scoreDisplayPlayerTwo = document.getElementById('score2');
+
+// we can bin this in a bit said matt confindently
+// let scoreValuePlayerOne = 0;
+// let scoreValuePlayerTwo = 0;
+
+
+
 // const scoreDisplay = document.getElementById('#score1');
 // scoreDisplay.innerHTML = 'test';
-console.log('the value of player 1 is ', scoreDisplayPlayerOne , 'the value of player 2 is', scoreDisplayPlayerTwo);
+// console.log('the value of player 1 is ', scoreDisplayPlayerOne , 'the value of player 2 is', scoreDisplayPlayerTwo);
 function lookForAMatch(event) {
   console.log('Looking for a match');
   const clicked = event.target;
   clicked.style.zIndex = -1;
-  // console.log('is this working', currentPlayer); // this is working.
   if (clicked.nodeName === 'section' || clicked === previousChoice || clicked.parentNode.classList.contains('selected')) {
     console.log('Clicked somewhere invalid!');
     return;
@@ -154,42 +159,46 @@ function lookForAMatch(event) {
     if (cardsChosenCount === 1) {
       firstDomElement = event.target;
       firstChoice = clicked.parentNode.dataset.name;
-      // let scoreValue = currentPlayer.score++;
-      // const scoreDisplay = document.getElementById('#score1');
-      // scoreDisplay.innerHTML = 'test';
-      // console.log('is first choice working', firstChoice);
       clicked.parentNode.classList.add('selected');
+      console.log('first card selected', firstChoice);
     } else {
       secondChoice = clicked.parentNode.dataset.name;
-      // console.log('second choice is working' , secondChoice);
+      console.log('second choice is working' , secondChoice);
       clicked.parentNode.classList.add('selected');
     }
+
     if (firstChoice !== '' && secondChoice !== '') {
       if(firstChoice === secondChoice) {
         currentPlayer.score++;
-        scoreValuePlayerOne = currentPlayer.score;
-        console.log('Setting score to', scoreValuePlayerOne, 'in', scoreDisplayPlayerOne, currentPlayer);
-        scoreDisplayPlayerOne.innerHTML = scoreValuePlayerOne;
-        // console.log('===>', event.target);
+        console.log(currentPlayer);
+
         firstDomElement.removeEventListener('click', lookForAMatch);
-        // console.log('--->', firstDomElement);
-        console.log('MATCH!');
+        console.log('MATCH!', currentPlayer);
+        currentPlayer.scoreDisplay.innerHTML = currentPlayer.score;
         setTimeout(addMatchClassToSelected, 2000);
         resetGuesses();
+        winningLogic();
         // setTimeout(resetGuesses, delay);
+
       } else {
         // setTimeout(resetGuesses, 2000);
         console.log('No match!');
         flipChoicesBackOver(firstDomElement, clicked);
         resetGuesses();
         if (currentPlayer.id === 1) {
+          // scoreValuePlayerOne = currentPlayer.score;
+          // console.log('Setting score to', scoreValuePlayerOne, 'in', scoreDisplayPlayerOne, currentPlayer);
+          // scoreDisplayPlayerOne.innerHTML = scoreValuePlayerOne;
           currentPlayer = playerTwo;
-          // const scoreDisplay = document.getElementById('score2');
-          scoreValuePlayerTwo = currentPlayer.score++;
-          scoreDisplayPlayerTwo.innerHTML = scoreValuePlayerTwo;
-          // console.log(currentPlayer);
+          console.log('this current player is ->', currentPlayer);
+
         } else {
+          // const scoreDisplay = document.getElementById('score2');
+          // scoreValuePlayerTwo = currentPlayer.score++;
+          // scoreDisplayPlayerTwo.innerHTML = scoreValuePlayerTwo;
+
           currentPlayer = playerOne;
+
         }
       }
     }
@@ -198,24 +207,21 @@ function lookForAMatch(event) {
   }
 }
 
-const numberOfMatches = 0;
+
 
 function flipChoicesBackOver(firstChoiceDiv, secondChoiceDiv) {
   // console.log('Flipping back', firstChoiceDiv, secondChoiceDiv);
-  firstChoiceDiv.style.zIndex = 0;
-  secondChoiceDiv.style.zIndex = 0;
+  setTimeout(() => {
+    firstChoiceDiv.style.zIndex = 0;
+    secondChoiceDiv.style.zIndex = 0;
+  }, 1000);
+  // setTimeout(flipChoicesBackOver, 2000);
 }
 
 function winningLogic() {
-  if (playerOne.numberOfMatches >= 7){
-    return window.alert('Player 1 you da boss, you won!');
-  } else if (playerTwo.numberOfMatches >= 7){
-    return window.alert('Player 2 you da boss, you won!');
-  } else if (playerOne.numberOfMatches === 6 && playerTwo.numberOfMatches === 6) {
+  if (currentPlayer.score >= 7){
+    return window.alert(`${currentPlayer.name} you da boss, you won!`);
+  } else if (playerOne.score === 6 && playerTwo.score === 6) {
     return window.alert('It is a draw');
-  } else if (playerTwo.numberOfMatches < 6 && playerOne.numberOfMatches >= 7) {
-    return window.alert('Player 2 you lose!');
-  } else if (playerOne.numberOfMatches < 6 && playerTwo.numberOfMatches >= 7) {
-    return window.alert('Player 1 you lose!');
   }
 }
