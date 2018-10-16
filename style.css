@@ -29,13 +29,13 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: blue;
+  background-color: lightblue;
 
 }
 
 .card {
   margin: 5px;
-  background-color: blue;
+  background-color: lightblue;
   height: 150px;
   width: 150px;
   background-repeat: round;
@@ -43,7 +43,9 @@ h1 {
 
 }
 .back {
-  background-image: url(images/stop.png);
+  background-image: url(images/sereja-ris-974609-unsplash.jpg);
+  background-size: cover;
+  align-items: center;
 }
 
 

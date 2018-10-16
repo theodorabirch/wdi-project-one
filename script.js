@@ -64,7 +64,7 @@ const playerTwo = { id: 2, name: 'Player 2', score: 0 };
 // define the global variables that are used.
 let firstChoice = '';
 let secondChoice = '';
-let count = 0;
+let cardsChosenCount = 0;
 let previousChoice = null;
 const delay = 1200;
 let currentPlayer = playerOne;
@@ -107,7 +107,7 @@ shuffledArray.forEach(item => {
   card.appendChild(back);
 });
 
-const match = () => {
+const addMatchClassToSelected = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     // console.log('Adding match to', card);
@@ -119,8 +119,7 @@ const match = () => {
 const resetGuesses = () => {
   firstChoice = '';
   secondChoice = '';
-  count = 0;
-
+  cardsChosenCount = 0;
   const selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.remove('selected');
@@ -134,18 +133,30 @@ const domCard = document.querySelectorAll('.back');
 domCard.forEach(card => card.addEventListener('click', lookForAMatch));
 let firstDomElement;
 
+let scoreValuePlayerOne = 0;
+let scoreValuePlayerTwo = 0;
+const scoreDisplayPlayerOne = document.getElementById('score1');
+const scoreDisplayPlayerTwo = document.getElementById('score2');
+// const scoreDisplay = document.getElementById('#score1');
+// scoreDisplay.innerHTML = 'test';
+console.log('the value of player 1 is ', scoreDisplayPlayerOne , 'the value of player 2 is', scoreDisplayPlayerTwo);
 function lookForAMatch(event) {
+  console.log('Looking for a match');
   const clicked = event.target;
   clicked.style.zIndex = -1;
-  // console.log('is this working', clicked); // this is working.
+  // console.log('is this working', currentPlayer); // this is working.
   if (clicked.nodeName === 'section' || clicked === previousChoice || clicked.parentNode.classList.contains('selected')) {
+    console.log('Clicked somewhere invalid!');
     return;
   }
-  if (count < 2) {
-    count++;
-    if (count === 1) {
+  if (cardsChosenCount <= 2) {
+    cardsChosenCount++;
+    if (cardsChosenCount === 1) {
       firstDomElement = event.target;
       firstChoice = clicked.parentNode.dataset.name;
+      // let scoreValue = currentPlayer.score++;
+      // const scoreDisplay = document.getElementById('#score1');
+      // scoreDisplay.innerHTML = 'test';
       // console.log('is first choice working', firstChoice);
       clicked.parentNode.classList.add('selected');
     } else {
@@ -156,21 +167,55 @@ function lookForAMatch(event) {
     if (firstChoice !== '' && secondChoice !== '') {
       if(firstChoice === secondChoice) {
         currentPlayer.score++;
+        scoreValuePlayerOne = currentPlayer.score;
+        console.log('Setting score to', scoreValuePlayerOne, 'in', scoreDisplayPlayerOne, currentPlayer);
+        scoreDisplayPlayerOne.innerHTML = scoreValuePlayerOne;
         // console.log('===>', event.target);
         firstDomElement.removeEventListener('click', lookForAMatch);
         // console.log('--->', firstDomElement);
-        // console.log('MATCH!');
-        setTimeout(match, delay);
+        console.log('MATCH!');
+        setTimeout(addMatchClassToSelected, 2000);
+        resetGuesses();
         // setTimeout(resetGuesses, delay);
       } else {
-        setTimeout(resetGuesses, delay);
+        // setTimeout(resetGuesses, 2000);
+        console.log('No match!');
+        flipChoicesBackOver(firstDomElement, clicked);
+        resetGuesses();
         if (currentPlayer.id === 1) {
           currentPlayer = playerTwo;
+          // const scoreDisplay = document.getElementById('score2');
+          scoreValuePlayerTwo = currentPlayer.score++;
+          scoreDisplayPlayerTwo.innerHTML = scoreValuePlayerTwo;
           // console.log(currentPlayer);
+        } else {
+          currentPlayer = playerOne;
         }
       }
     }
     previousChoice = clicked;
 
+  }
+}
+
+const numberOfMatches = 0;
+
+function flipChoicesBackOver(firstChoiceDiv, secondChoiceDiv) {
+  // console.log('Flipping back', firstChoiceDiv, secondChoiceDiv);
+  firstChoiceDiv.style.zIndex = 0;
+  secondChoiceDiv.style.zIndex = 0;
+}
+
+function winningLogic() {
+  if (playerOne.numberOfMatches >= 7){
+    return window.alert('Player 1 you da boss, you won!');
+  } else if (playerTwo.numberOfMatches >= 7){
+    return window.alert('Player 2 you da boss, you won!');
+  } else if (playerOne.numberOfMatches === 6 && playerTwo.numberOfMatches === 6) {
+    return window.alert('It is a draw');
+  } else if (playerTwo.numberOfMatches < 6 && playerOne.numberOfMatches >= 7) {
+    return window.alert('Player 2 you lose!');
+  } else if (playerOne.numberOfMatches < 6 && playerTwo.numberOfMatches >= 7) {
+    return window.alert('Player 1 you lose!');
   }
 }
