@@ -56,16 +56,10 @@ const cardsArray = [{
 // need to duplicate the array so I can create a match for each card
 const gameGrid = cardsArray.concat(cardsArray);
 //need to randomise the array
-const shuffledArray = gameGrid.sort(() => 0.5 - Math.random());
+const shuffledArray = gameGrid; //.sort(() => 0.5 - Math.random());
 
 const playerOne = { id: 1, name: 'Player 1', score: 0, scoreDisplay: document.getElementById('score1') };
 const playerTwo = { id: 2, name: 'Player 2', score: 0, scoreDisplay: document.getElementById('score2') };
-
-console.log('------------------------------>', playerOne);
-console.log('------------------------------>', playerTwo);
-
-// const scoreDisplayPlayerOne = document.getElementById('score1');
-// const scoreDisplayPlayerTwo = document.getElementById('score2');
 
 // define the global variables that are used.
 let firstChoice = '';
@@ -84,7 +78,7 @@ const grid = document.createElement('section');
 grid.setAttribute('class', 'grid');
 // now need to append the grid section to the game div
 game.appendChild(grid);
-// console.log(game);
+
 
 // Now I need to get the images to display on the front of the cards. I will loop through each item and create a new card div for each object
 
@@ -113,9 +107,7 @@ shuffledArray.forEach(item => {
 const addMatchClassToSelected = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
-    // console.log('Adding match to', card);
     card.classList.add('match');
-    // event.target.removeEventListener('click', lookForAMatch);
   });
 };
 
@@ -131,21 +123,10 @@ const resetGuesses = () => {
 // add an eventlistener to the entire grid
 const domCard = document.querySelectorAll('.back');
 
-// grid.addEventListener('click', lookForAMatch);
 
 domCard.forEach(card => card.addEventListener('click', lookForAMatch));
 let firstDomElement;
 
-
-// we can bin this in a bit said matt confindently
-// let scoreValuePlayerOne = 0;
-// let scoreValuePlayerTwo = 0;
-
-
-
-// const scoreDisplay = document.getElementById('#score1');
-// scoreDisplay.innerHTML = 'test';
-// console.log('the value of player 1 is ', scoreDisplayPlayerOne , 'the value of player 2 is', scoreDisplayPlayerTwo);
 function lookForAMatch(event) {
   console.log('Looking for a match');
   const clicked = event.target;
@@ -178,24 +159,18 @@ function lookForAMatch(event) {
         setTimeout(addMatchClassToSelected, 2000);
         resetGuesses();
         winningLogic();
-        // setTimeout(resetGuesses, delay);
+
 
       } else {
-        // setTimeout(resetGuesses, 2000);
+
         console.log('No match!');
         flipChoicesBackOver(firstDomElement, clicked);
         resetGuesses();
         if (currentPlayer.id === 1) {
-          // scoreValuePlayerOne = currentPlayer.score;
-          // console.log('Setting score to', scoreValuePlayerOne, 'in', scoreDisplayPlayerOne, currentPlayer);
-          // scoreDisplayPlayerOne.innerHTML = scoreValuePlayerOne;
           currentPlayer = playerTwo;
           console.log('this current player is ->', currentPlayer);
 
         } else {
-          // const scoreDisplay = document.getElementById('score2');
-          // scoreValuePlayerTwo = currentPlayer.score++;
-          // scoreDisplayPlayerTwo.innerHTML = scoreValuePlayerTwo;
 
           currentPlayer = playerOne;
 
@@ -210,12 +185,10 @@ function lookForAMatch(event) {
 
 
 function flipChoicesBackOver(firstChoiceDiv, secondChoiceDiv) {
-  // console.log('Flipping back', firstChoiceDiv, secondChoiceDiv);
   setTimeout(() => {
     firstChoiceDiv.style.zIndex = 0;
     secondChoiceDiv.style.zIndex = 0;
   }, 1000);
-  // setTimeout(flipChoicesBackOver, 2000);
 }
 
 function winningLogic() {
