@@ -1,9 +1,13 @@
-html
+html {
+  background: url('images/underthesea.jpg');
+  background-color: white:
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
 
 body {
   margin: 20px 0;
-  background: url('images/underthesea.jpg');
-  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 
@@ -11,8 +15,9 @@ body {
 
 .music {
   font-size: 30px;
-  background-color: turquoise;
-  font-family: 'K2D', sans-serif;
+  background-color: yellow;
+  font-family: 'Pacifico', cursive;
+
 }
 main {
   display: flex;
@@ -25,17 +30,19 @@ main {
   display: flex;
   flex-direction: column;
   width: 20%;
-  background-color: lightblue;
+  background-color: #c9e9ef;
   border-radius: 10px;
   padding: 3%;
   opacity: 0.8;
-  font-family: 'K2D', sans-serif;
+  font-family: 'Pacifico', cursive;
+
 
 }
 
 .score span button {
-  background-color: turquoise;
+  background-color: lightblue;
   font-size: 30px;
+  color: white;
 
 }
 span {
@@ -55,12 +62,12 @@ button {
   align-items: center;
 }
 h1 {
-  font-family: 'K2D', sans-serif;
+  font-family: 'Pacifico', cursive;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 70px;
-  color: darkblue;
+  color: black;
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -72,12 +79,14 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: lightblue;
+  opacity: 0.1s;
 
 }
 
 .card {
   margin: 5px;
   background-color: lightblue;
+  opacity: 0s;
   height: 150px;
   width: 150px;
   background-repeat: round;
@@ -85,9 +94,10 @@ h1 {
 
 }
 .back {
-  background-image: url(images/sereja-ris-974609-unsplash.jpg);
+  background-image: url('images/sereja-ris-974609-unsplash.jpg');
   background-size: cover;
   align-items: center;
+
 }
 
 .grid {
