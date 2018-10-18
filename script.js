@@ -56,7 +56,7 @@ const cardsArray = [{
 // need to duplicate the array so I can create a match for each card
 const gameGrid = cardsArray.concat(cardsArray);
 //need to randomise the array
-const shuffledArray = gameGrid; //.sort(() => 0.5 - Math.random());
+const shuffledArray = gameGrid.sort(() => 0.5 - Math.random());
 
 const playerOne = { id: 1, name: 'Player 1', score: 0, scoreDisplay: document.getElementById('score1') };
 const playerTwo = { id: 2, name: 'Player 2', score: 0, scoreDisplay: document.getElementById('score2') };
@@ -69,14 +69,6 @@ let previousChoice = null;
 // const delay = 1200;
 let currentPlayer = playerOne;
 
-
-// // event listener for the button on welcome page
-// function proceedToGame () {
-//   const mainPage = document.querySelector('.main-page');
-//   mainPage.style.zIndex = 2;
-//   welcomePage.style.zIndex = -1;
-// }
-// Now I need to grab the id of the div in html
 
 // Create the grid
 const game = document.getElementById('game');
