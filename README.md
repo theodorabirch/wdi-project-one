@@ -62,4 +62,8 @@ const shuffledArray = gameGrid.sort(() => 0.5 - Math.random());
 
 By far the biggest win for me was getting a functioning game working. Getting my head around functions, arrays and objects and then using them was a huge challenge that I did manage to overcome.
 
-My biggest challenge took me slightly by surprise which was the styling of the game. I found using CSS and CSS animation much harder than expected. 
+My biggest challenge took me slightly by surprise which was the styling of the game. I found using CSS and CSS animation much harder than expected.
+
+# Future Features
+
+If I had more time I would make my game mobile responsive and would add levels which increases the difficulty. 

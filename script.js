@@ -1,4 +1,5 @@
-// the first step is to display the cards each with a different value - therefore going to use an array of objects and store this in the cardsArray variable.
+// the first step is to display the cards each with a different value
+//- therefore going to use an array of objects and store this in the cardsArray variable.
 
 const cardsArray = [{
   'name': 'seahorse',
@@ -109,14 +110,14 @@ shuffledArray.forEach(item => {
   card.appendChild(front);
   card.appendChild(back);
 });
-
+// this adds the class of selected and match to the cards.
 const addMatchClassToSelected = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.add('match');
   });
 };
-
+// this section resets the guess between the two players.
 const resetGuesses = () => {
   firstChoice = '';
   secondChoice = '';
@@ -129,10 +130,11 @@ const resetGuesses = () => {
 // add an eventlistener to the entire grid
 const domCard = document.querySelectorAll('.back');
 
-
+// here I add an event listener to the whole board and this on a click invokes the function for a match
 domCard.forEach(card => card.addEventListener('click', lookForAMatch));
 let firstDomElement;
 
+// this function Looks for a match.
 function lookForAMatch(event) {
   console.log('Looking for a match');
   const clicked = event.target;
@@ -189,14 +191,14 @@ function lookForAMatch(event) {
 }
 
 
-
+// this means that when there is not a match the cards flip back over.
 function flipChoicesBackOver(firstChoiceDiv, secondChoiceDiv) {
   setTimeout(() => {
     firstChoiceDiv.style.zIndex = 0;
     secondChoiceDiv.style.zIndex = 0;
   }, 1000);
 }
-
+// the winning logic 
 function winningLogic() {
   if (currentPlayer.score >= 7){
     return window.alert(`${currentPlayer.name} you da boss, you won!`);
